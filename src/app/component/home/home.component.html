@@ -1,0 +1,36 @@
+<div class="container ">
+    <div class="content">
+        <mat-card class="card animate__animated animate__backInUp z-depth-5">
+            <mat-card-title-group>
+                <div class="row center-align">
+                    <div class="row" style="margin: 30px;">
+                        <img mat-card-md-image class="circle responsive-img"
+                            src="https://i.ibb.co/7S85XhZ/inter-Logo.jpg">
+                    </div>
+                    <mat-card-title>Bienvenido Al Bingo</mat-card-title>
+                    <mat-card-subtitle>Internacionale FC</mat-card-subtitle>
+                </div>
+            </mat-card-title-group>
+            <mat-card-content>
+                <div class="row center-align">
+                    <form>
+                        <mat-form-field class="select-mode" style="width: 70%;">
+                            <mat-label >Selecciona un modo de juego</mat-label>
+                            <mat-select (selectionChange)="changeOption($event.value)">
+                                <mat-option *ngFor="let gameMode of gameModes" [value]="gameMode.id">
+                                    {{gameMode.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                    <button mat-raised-button style="background-color: white; color: black; margin: 30px;"
+                        (click)="selectMode()">Seleccionar</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="parallax"><img src="https://www.institutofutbol.com/wp-content/uploads/2017/10/El-equipo-de-f%C3%BAtbol-como-organizaci%C3%B3n-compleja.jpg"></div>
+</div>

@@ -1,0 +1,22 @@
+<div class="parallax-container ">
+    <div class="parallax-layer parallax-bg"></div>
+    <div class="parallax-layer parallax-overlay"></div> <!-- Capa de superposición transparente -->
+    <div class="parallax-layer">
+        <div class="row">
+            <div class="col">
+                <div class="example-button-container">
+                    <button mat-fab color="warn" class="home-button" aria-label="Example icon button with a home icon" (click)="redirectHome()">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido adicional aquí -->
+        <div class="container">
+            <div class="content">
+                <app-tablero [gameMode]="selectedValue"></app-tablero>
+            </div>
+        </div>
+    </div>
+</div>

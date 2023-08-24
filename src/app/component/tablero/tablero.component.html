@@ -1,0 +1,40 @@
+<div class="row animate__animated animate__backInDown">
+    <div class="col s11  offset-s11"></div>
+    <mat-card class="table example-card">
+        <div class="center-align">
+            <mat-card-title>Tablero de balotas</mat-card-title>
+            <mat-card-subtitle style="color: green;">Tipo de tablero {{gameMode.name}}</mat-card-subtitle>
+            <div class="container">
+                <div class="content">
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 20px;background-color: red; border-radius: 10px;margin-bottom: 20px; width: 95%;">
+            <div class="col s1 center-align" style="background-color: red; border-radius: 10px;margin-top: 15px; ">
+                <div class="row" style="margin-top: 18px;" *ngFor="let letter of letters">
+                    <h1 style="color: white;">{{letter}}</h1>
+                </div>
+            </div>
+            <div class="col s11" style="margin-top: 10px">
+                <table class="center-align">
+                    <tbody>
+                        <tr id="b" class="center-align" style="border: none;margin-top: 10px;"></tr>
+                        <tr id="i" style="border: none;margin-top: 10px;"></tr>
+                        <tr id="n" style="border: none;margin-top: 10px;"></tr>
+                        <tr id="g" style="border: none;margin-top: 10px;"></tr>
+                        <tr id="o" style="border: none;margin-top: 10px;"></tr>
+                    </tbody>
+                </table>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+
+        <div class="row center-align">
+            <mat-divider></mat-divider>
+            <button mat-raised-button class="spin animate__animated animate__pulse animate__infinite" style="background-color: green; color: white;"  (click)="spin()" [disabled]="blockButton">Gira la ruleta</button>
+        </div>
+    </mat-card>
+</div>
