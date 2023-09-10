@@ -24,12 +24,11 @@ export class BingoComponent  {
       { name: 'Completo', id: 1 },
       { name: 'Solo esquinas', id: 2 },
       { name: 'Solo esquinas y centro', id: 3 },
-      { name: 'L', id: 4 },
-      { name: 'T', id: 5 },
-      { name: 'B', id: 6 },
-      { name: 'X', id: 7 },
-      { name: 'Cruz', id: 8 },
-      { name: 'Cuadrado', id: 9 },
+      { name: 'Solo letra B', id: 4 },
+      { name: 'Solo letra I', id: 5 },
+      { name: 'Solo letra N', id: 6 },
+      { name: 'Solo letra G', id: 7 },
+      { name: 'Solo letra O', id: 8 },
     ]
     const queryString = window.location.search.split('=')[1];
     this.selectedValue = this.gameModes.find(x => x.id == parseInt(queryString));

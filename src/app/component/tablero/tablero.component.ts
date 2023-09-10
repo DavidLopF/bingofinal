@@ -25,6 +25,7 @@ export class TableroComponent implements OnInit {
   letters: string[] = [];
   blockButton: boolean;
   @Input() gameMode: any;
+  imgMode: string;
 
   constructor() {
     for (let i = 1; i <= 75; i++) {
@@ -32,6 +33,8 @@ export class TableroComponent implements OnInit {
     }
     this.blockButton = false;
     this.letters = ['B', 'I', 'N', 'G', 'O'];
+    
+    this.imgMode = localStorage.getItem('img') || 'https://i.ibb.co/7S85XhZ/inter-Logo.jpg';
   }
 
   printBalotas() {
@@ -40,7 +43,7 @@ export class TableroComponent implements OnInit {
     const n = document.getElementById('n');
     const g = document.getElementById('g');
     const o = document.getElementById('o');
-    const style = `style="border-radius:300px;background-color: white;height: 40px;width: 40px;"`;
+    const style = `style="border-radius:300px;background-color: white;height: 40px;width: 40px; font-size: 20px; font-weight: bold; text-align: center; line-height: 40px;"`;
     const classBalota = ` class="balota center-align animate__animated animate__pulse animate__infinite"`;
     this.balotas.forEach(balota => {
       if (b && i && n && g && o) {
@@ -111,7 +114,7 @@ export class TableroComponent implements OnInit {
 
 
   selectBalota() {
-    if (this.gameMode.id == 1 || this.gameMode.id == 4 || this.gameMode.id == 5 || this.gameMode.id == 6 || this.gameMode.id == 7 || this.gameMode.id == 8 || this.gameMode.id == 9) {
+    if (this.gameMode.id == 1 ) {
       const balota = this.balotas[Math.floor(Math.random() * this.balotas.length)];
       const balotaElement = document.getElementById(`b${balota.numero}`);
       this.balotas = this.balotas.filter(b => b.numero !== balota.numero);
@@ -128,6 +131,8 @@ export class TableroComponent implements OnInit {
           if (balota.letra == 'I' || balota.letra == 'N' || balota.letra == 'G') {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
           }
         }
       });
@@ -148,6 +153,8 @@ export class TableroComponent implements OnInit {
           if (balota.letra == 'I' || balota.letra == 'G') {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
           }
         }
       });
@@ -161,6 +168,116 @@ export class TableroComponent implements OnInit {
         balotaElement3.style.fontSize = '20px';
         balotaElement3.style.fontWeight = 'bold';
       }
+    } else if (this.gameMode.id == 4) {
+      this.balotas.forEach(balota => {
+        const balotaElement = document.getElementById(`b${balota.numero}`);
+        if (balotaElement) {
+          if (balota.letra == 'I' || balota.letra == 'N' || balota.letra == 'G' || balota.letra == 'O') {
+            balotaElement.style.backgroundColor = 'red';
+            balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
+          }
+        }
+      });
+      this.balotas = this.balotas.filter(b => b.letra !== 'I' && b.letra !== 'N' && b.letra !== 'G' && b.letra !== 'O');
+      const balota4 = this.balotas[Math.floor(Math.random() * this.balotas.length)];
+      const balotaElement4 = document.getElementById(`b${balota4.numero}`);
+      this.balotas = this.balotas.filter(b => b.numero !== balota4.numero);
+      if (balotaElement4) {
+        balotaElement4.style.backgroundColor = 'green';
+        balotaElement4.style.color = 'white';
+        balotaElement4.style.fontSize = '20px';
+        balotaElement4.style.fontWeight = 'bold';
+      }
+    } else if (this.gameMode.id == 5) {
+      this.balotas.forEach(balota => {
+        const balotaElement = document.getElementById(`b${balota.numero}`);
+        if (balotaElement) {
+          if (balota.letra == 'B' || balota.letra == 'N' || balota.letra == 'G' || balota.letra == 'O') {
+            balotaElement.style.backgroundColor = 'red';
+            balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
+          }
+        }
+      });
+      this.balotas = this.balotas.filter(b => b.letra !== 'B' && b.letra !== 'N' && b.letra !== 'G' && b.letra !== 'O');
+      const balota5 = this.balotas[Math.floor(Math.random() * this.balotas.length)];
+      const balotaElement5 = document.getElementById(`b${balota5.numero}`);
+      this.balotas = this.balotas.filter(b => b.numero !== balota5.numero);
+      if (balotaElement5) {
+        balotaElement5.style.backgroundColor = 'green';
+        balotaElement5.style.color = 'white';
+        balotaElement5.style.fontSize = '20px';
+        balotaElement5.style.fontWeight = 'bold';
+      }
+    } else if (this.gameMode.id == 6) {
+      this.balotas.forEach(balota => {
+        const balotaElement = document.getElementById(`b${balota.numero}`);
+        if (balotaElement) {
+          if (balota.letra == 'B' || balota.letra == 'I' || balota.letra == 'G' || balota.letra == 'O') {
+            balotaElement.style.backgroundColor = 'red';
+            balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
+          }
+        }
+      });
+      this.balotas = this.balotas.filter(b => b.letra !== 'B' && b.letra !== 'I' && b.letra !== 'G' && b.letra !== 'O');
+      const balota6 = this.balotas[Math.floor(Math.random() * this.balotas.length)];
+      const balotaElement6 = document.getElementById(`b${balota6.numero}`);
+      this.balotas = this.balotas.filter(b => b.numero !== balota6.numero);
+      if (balotaElement6) {
+        balotaElement6.style.backgroundColor = 'green';
+        balotaElement6.style.color = 'white';
+        balotaElement6.style.fontSize = '20px';
+        balotaElement6.style.fontWeight = 'bold';
+      }      
+    } else if (this.gameMode.id == 7) {
+      this.balotas.forEach(balota => {
+        const balotaElement = document.getElementById(`b${balota.numero}`);
+        if (balotaElement) {
+          if (balota.letra == 'B' || balota.letra == 'I' || balota.letra == 'N' || balota.letra == 'O') {
+            balotaElement.style.backgroundColor = 'red';
+            balotaElement.style.color = 'red';
+            balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
+          }
+        }
+      });
+      this.balotas = this.balotas.filter(b => b.letra !== 'B' && b.letra !== 'I' && b.letra !== 'N' && b.letra !== 'O');
+      const balota7 = this.balotas[Math.floor(Math.random() * this.balotas.length)];
+      const balotaElement7 = document.getElementById(`b${balota7.numero}`);
+      this.balotas = this.balotas.filter(b => b.numero !== balota7.numero);
+      if (balotaElement7) {
+        balotaElement7.style.backgroundColor = 'green';
+        balotaElement7.style.color = 'white';
+        balotaElement7.style.fontSize = '20px';
+        balotaElement7.style.fontWeight = 'bold';
+      }      
+    } else if (this.gameMode.id == 8) {
+      this.balotas.forEach(balota => {
+        const balotaElement = document.getElementById(`b${balota.numero}`);
+        if (balotaElement) {
+          if (balota.letra == 'B' || balota.letra == 'I' || balota.letra == 'N' || balota.letra == 'G') {
+            balotaElement.style.backgroundColor = 'red';
+            balotaElement.style.color = 'red';
+               balotaElement.classList.remove('animate__pulse');
+            balotaElement.classList.remove('animate__swing');
+          }
+        }
+      });
+      this.balotas = this.balotas.filter(b => b.letra !== 'B' && b.letra !== 'I' && b.letra !== 'N' && b.letra !== 'G');
+      const balota8 = this.balotas[Math.floor(Math.random() * this.balotas.length)];
+      const balotaElement8 = document.getElementById(`b${balota8.numero}`);
+      this.balotas = this.balotas.filter(b => b.numero !== balota8.numero);
+      if (balotaElement8) {
+        balotaElement8.style.backgroundColor = 'green';
+        balotaElement8.style.color = 'white';
+        balotaElement8.style.fontSize = '20px';
+        balotaElement8.style.fontWeight = 'bold';
+      }      
     }
   }
 

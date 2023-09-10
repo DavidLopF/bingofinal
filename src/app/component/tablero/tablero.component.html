@@ -4,14 +4,14 @@
         <div class="center-align">
             <mat-card-title>Tablero de balotas</mat-card-title>
             <mat-card-subtitle style="color: green;">Tipo de tablero {{gameMode.name}}</mat-card-subtitle>
+            <img mat-card-md-image class=" responsive-img typeGame logo"
+                                    src={{imgMode}}>
             <div class="container">
                 <div class="content">
                     <hr>
                 </div>
             </div>
         </div>
-
-
         <div class="row" style="margin-top: 20px;background-color: rgba(55, 225, 46, 0.552); border-radius: 10px;margin-bottom: 20px; width: 95%;">
             <div class="col s1 center-align" style="background-color: rgba(55, 225, 46, 0.0001); border-radius: 10px;margin-top: 15px; ">
                 <div class="row" style="margin-top: 18px;" *ngFor="let letter of letters">
