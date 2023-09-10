@@ -8,8 +8,8 @@
                     <mat-card-title-group>
                         <div class="row center-align">
                             <div class="row" style="margin: 30px;">
-                                <img mat-card-md-image class="circle responsive-img" style="border-radius: 50%;"
-                                    src="https://i.ibb.co/7S85XhZ/inter-Logo.jpg">
+                                <img mat-card-md-image class="circle responsive-img typeGame logo" #logo [hidden]="!imageSelected"
+                                    src={{imageSelected}}>
                             </div>
                             <mat-card-title>
                                 <h1 style="color: white;">Bienvenido Al Bingo</h1>
@@ -32,7 +32,7 @@
                                     </mat-select>
                                 </mat-form-field>
                             </form>
-                            <button mat-raised-button style="background-color: white; color: black; margin: 30px;"
+                            <button mat-raised-button style="background-color: white; color: black;"
                                 (click)="selectMode()">Seleccionar</button>
                         </div>
                     </mat-card-content>

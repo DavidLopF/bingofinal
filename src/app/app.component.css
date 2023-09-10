@@ -9,3 +9,20 @@
     padding: 20px;
 }
 
+
+/* Estilo para el contenedor que centrará su contenido */
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto centra verticalmente en la ventana */
+    background-color: #f0f0f0; /* Color de fondo del contenedor */
+}
+
+/* Estilo para el contenedor interno que centrará el cuadrado */
+.centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

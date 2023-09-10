@@ -4,3 +4,12 @@
     margin-top: 15%;
     border-radius: 10px;
 }
+
+.logo{
+    border-radius: 50%
+}
+
+.typeGame{
+    width: 140px;
+    height: 160px;
+}
