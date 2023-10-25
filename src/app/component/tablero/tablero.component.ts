@@ -351,6 +351,7 @@ export class TableroComponent implements OnInit {
   }
 
   bingo() {
+    this.blockButton = true;
     this.hidenBingo = true;
     let bingo = document.getElementById('bingo');
     if (bingo) {
@@ -377,6 +378,7 @@ export class TableroComponent implements OnInit {
   }
 
   noBingo() {
+    this.blockButton = false;
     //eliminar el div divEncima
     let divEncima = document.getElementById('divEncima');
     divEncima?.classList.remove('absolute', 'z-50');

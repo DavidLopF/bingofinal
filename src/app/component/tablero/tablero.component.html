@@ -34,7 +34,6 @@
                   class="spin ml-2"
                   style="background-color: green; color: white"
                   (click)="confirmBingo()"
-                  [disabled]="blockButton"
                 >
                   Confirmar Bingo <mat-icon>celebration</mat-icon>
                 </button>
@@ -45,7 +44,6 @@
                   class="spin mr-2"
                   style="background-color: green; color: white"
                   (click)="noBingo()"
-                  [disabled]="blockButton"
                 >
                   Sigue Jugando<mat-icon>sentiment_very_dissatisfied</mat-icon>
                 </button>
@@ -116,6 +114,7 @@
           style="background-color: green; color: white"
           (click)="spin()"
           [disabled]="blockButton"
+          id="spin"
         >
           <mat-icon>cached</mat-icon> Gira la ruleta
         </button>
