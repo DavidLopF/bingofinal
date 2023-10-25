@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import * as confetti from 'canvas-confetti';
 
 interface balotas {
   numero: number;
@@ -19,8 +20,8 @@ interface GameMode {
 export class TableroComponent implements OnInit {
   balotas: balotas[] = [];
   letters: string[] = [];
-  classSPin: string;
-  normalClass: string;
+  classBingo: string;
+  hidenBingo: boolean;
   blockButton: boolean;
   @Input() gameMode: any;
   imgMode: string;
@@ -29,15 +30,13 @@ export class TableroComponent implements OnInit {
     for (let i = 1; i <= 75; i++) {
       this.balotas.push({ numero: i, estado: false, letra: this.getLetter(i) });
     }
-    this.classSPin =
-      'animate-spin animate-infinite animate-duration-200 animate-ease-linear';
-    this.normalClass =
-      'animate-jump animate-infinite animate-duration-[7000ms] animate-ease-linear';
+    this.classBingo = 'animate__animated animate__pulse animate__infinite';
     this.blockButton = false;
     this.letters = ['B', 'I', 'N', 'G', 'O'];
 
     this.imgMode =
       localStorage.getItem('img') || 'https://i.ibb.co/7S85XhZ/inter-Logo.jpg';
+    this.hidenBingo = false;
   }
 
   printBalotas() {
@@ -351,6 +350,46 @@ export class TableroComponent implements OnInit {
     }
   }
 
+  bingo() {
+    this.hidenBingo = true;
+    let bingo = document.getElementById('bingo');
+    if (bingo) {
+      bingo.classList.remove('animate__pulse');
+    }
+  }
+
+  confirmBingo() {
+    let divEncima = document.getElementById('divEncima');
+    divEncima?.classList.add('absolute', 'z-50');
+    console.log(divEncima);
+    if (divEncima) {
+      divEncima.innerHTML = `<div class="div mb-80">
+        <canvas id="canvas" class="w-screen h-screen"></canvas>
+      </div>`;
+    }
+
+    let canvas = document.getElementById('canvas') as HTMLCanvasElement;
+    if (canvas) {
+      confetti.create(canvas, {
+        useWorker: true,
+      })({ particleCount: 200, spread: 200 });
+    }
+  }
+
+  noBingo() {
+    //eliminar el div divEncima
+    let divEncima = document.getElementById('divEncima');
+    divEncima?.classList.remove('absolute', 'z-50');
+    if (divEncima) {
+      divEncima.innerHTML = '';
+    }
+    this.hidenBingo = false;
+    let bingo = document.getElementById('bingo');
+    if (bingo) {
+      bingo.classList.add('animate__pulse');
+    }
+    this.spin();
+  }
   ngOnInit(): void {
     this.printBalotas();
   }

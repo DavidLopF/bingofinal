@@ -1,86 +1,126 @@
-<div
-  class="row animate__animated animate__backInDown w-10/12 h-64 resize rounded-md"
->
-  <div class="col s11 offset-s11"></div>
-  <mat-card class="table example-card">
-    <div class="center-align">
-      <mat-card-title>Tablero de balotas</mat-card-title>
-      <mat-card-subtitle style="color: green"
-        >Tipo de tablero {{ gameMode.name }}</mat-card-subtitle
-      >
-      <div class="flex justify-center place-items-center mt-3 mb-3">
-        <img
-          mat-card-md-image
-          class="responsive-img typeGame logo place-items-center"
-          src="{{ imgMode }}"
-        />
-      </div>
-      <div class="container">
-        <div class="content">
-          <hr />
+<div class="relative" id="divPadre">
+  <!-- Otros divs aquí -->
+  <div
+    class="row animate__animated animate__backInDown w-10/12 h-64 resize rounded-md"
+  >
+    <div class="col s11 offset-s11"></div>
+    <mat-card class="table example-card">
+      <div class="center-align">
+        <mat-card-title [hidden]="hidenBingo"
+          >Tablero de balotas</mat-card-title
+        >
+        <mat-card-subtitle [hidden]="hidenBingo" style="color: green"
+          >Tipo de tablero {{ gameMode.name }}</mat-card-subtitle
+        >
+        <div
+          class="flex justify-center place-items-center mt-3 mb-3 animate__animated animate__pulse animate__infinite"
+          id="bingo"
+        >
+          <!-- animate__animated animate__pulse animate__infinite -->
+          <img
+            mat-card-md-image
+            class="responsive-img typeGame logo place-items-center"
+            src="{{ imgMode }}"
+            [hidden]="hidenBingo"
+            (click)="bingo()"
+          />
+
+          <div class="row" [hidden]="!hidenBingo">
+            <h1>Validando Balotas</h1>
+            <div class="row">
+              <div class="col">
+                <button
+                  mat-raised-button
+                  class="spin ml-2"
+                  style="background-color: green; color: white"
+                  (click)="confirmBingo()"
+                  [disabled]="blockButton"
+                >
+                  Confirmar Bingo <mat-icon>celebration</mat-icon>
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  mat-raised-button
+                  class="spin mr-2"
+                  style="background-color: green; color: white"
+                  (click)="noBingo()"
+                  [disabled]="blockButton"
+                >
+                  Sigue Jugando<mat-icon>sentiment_very_dissatisfied</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="content">
+            <hr />
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      class="row"
-      style="
-        margin-top: 20px;
-        background-color: rgba(55, 225, 46, 0.552);
-        border-radius: 10px;
-        margin-bottom: 20px;
-        width: 95%;
-      "
-    >
       <div
-        class="col s1 center-align"
+        class="row"
         style="
-          background-color: rgba(55, 225, 46, 0.0001);
+          margin-top: 20px;
+          background-color: rgba(55, 225, 46, 0.552);
           border-radius: 10px;
-          margin-top: 15px;
+          margin-bottom: 20px;
+          width: 95%;
         "
       >
         <div
-          class="row"
-          style="margin-top: 18px"
-          *ngFor="let letter of letters"
+          class="col s1 center-align"
+          style="
+            background-color: rgba(55, 225, 46, 0.0001);
+            border-radius: 10px;
+            margin-top: 15px;
+          "
         >
-          <h1 style="color: white">{{ letter }}</h1>
+          <div
+            class="row"
+            style="margin-top: 18px"
+            *ngFor="let letter of letters"
+          >
+            <h1 style="color: white">{{ letter }}</h1>
+          </div>
         </div>
+        <div class="col s11" style="margin-top: 10px">
+          <table class="center-align">
+            <tbody>
+              <tr
+                id=""
+                class="center-align"
+                style="border: none; margin-top: 10px"
+              ></tr>
+              <tr
+                id="b"
+                class="center-align"
+                style="border: none; margin-top: 10px"
+              ></tr>
+              <tr id="i" style="border: none; margin-top: 10px"></tr>
+              <tr id="n" style="border: none; margin-top: 10px"></tr>
+              <tr id="g" style="border: none; margin-top: 10px"></tr>
+              <tr id="o" style="border: none; margin-top: 10px"></tr>
+            </tbody>
+          </table>
+        </div>
+        <mat-divider></mat-divider>
       </div>
-      <div class="col s11" style="margin-top: 10px">
-        <table class="center-align">
-          <tbody>
-            <tr
-              id=""
-              class="center-align"
-              style="border: none; margin-top: 10px"
-            ></tr>
-            <tr
-              id="b"
-              class="center-align"
-              style="border: none; margin-top: 10px"
-            ></tr>
-            <tr id="i" style="border: none; margin-top: 10px"></tr>
-            <tr id="n" style="border: none; margin-top: 10px"></tr>
-            <tr id="g" style="border: none; margin-top: 10px"></tr>
-            <tr id="o" style="border: none; margin-top: 10px"></tr>
-          </tbody>
-        </table>
-      </div>
-      <mat-divider></mat-divider>
-    </div>
 
-    <div class="row center-align">
-      <mat-divider></mat-divider>
-      <button
-        mat-raised-button
-        class="spin animate__animated animate__pulse animate__infinite"
-        style="background-color: green; color: white"
-        (click)="spin()"
-        [disabled]="blockButton"
-      >
-        Gira la ruleta
-      </button>
-    </div>
-  </mat-card>
+      <div class="row center-align">
+        <mat-divider></mat-divider>
+        <button
+          mat-raised-button
+          class="spin animate__animated animate__pulse animate__infinite"
+          style="background-color: green; color: white"
+          (click)="spin()"
+          [disabled]="blockButton"
+        >
+          <mat-icon>cached</mat-icon> Gira la ruleta
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <div id="divEncima"></div>
 </div>
