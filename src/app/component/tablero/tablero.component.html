@@ -1,4 +1,5 @@
 <div class="relative" id="divPadre">
+  <div id="divEncima"></div>
   <!-- Otros divs aquí -->
   <div
     class="row animate__animated animate__backInDown w-10/12 h-64 resize rounded-md"
@@ -109,6 +110,7 @@
       <div class="row center-align">
         <mat-divider></mat-divider>
         <button
+          [hidden]="hidenBingo"
           mat-raised-button
           class="spin animate__animated animate__pulse animate__infinite"
           style="background-color: green; color: white"
@@ -121,5 +123,4 @@
       </div>
     </mat-card>
   </div>
-  <div id="divEncima"></div>
 </div>

@@ -23,6 +23,11 @@ export class TableroComponent implements OnInit {
   classBingo: string;
   hidenBingo: boolean;
   blockButton: boolean;
+  soundBalls: any;
+  soundSuspense: any;
+  soundBingo: any;
+  soundFail: any;
+  soundTransition: any;
   @Input() gameMode: any;
   imgMode: string;
 
@@ -37,6 +42,11 @@ export class TableroComponent implements OnInit {
     this.imgMode =
       localStorage.getItem('img') || 'https://i.ibb.co/7S85XhZ/inter-Logo.jpg';
     this.hidenBingo = false;
+    this.soundBalls = new Audio('../../../assets/sounds/spin.mp3');
+    this.soundSuspense = new Audio('../../../assets/sounds/suspense.mp3');
+    this.soundBingo = new Audio('../../../assets/sounds/bingo.mp3');
+    this.soundTransition = new Audio('../../../assets/sounds/transition.mp3');
+    this.soundFail = new Audio('../../../assets/sounds/fail.mp3');
   }
 
   printBalotas() {
@@ -90,6 +100,10 @@ export class TableroComponent implements OnInit {
   spin() {
     this.blockButton = true;
 
+    // this.soundBalls.play(); comezar este audio desde el inicio
+    this.soundBalls.currentTime = 0;
+    this.soundBalls.play();
+
     this.balotas.forEach((balota) => {
       const balotaElement = document.getElementById(`b${balota.numero}`);
       if (balotaElement) {
@@ -104,8 +118,10 @@ export class TableroComponent implements OnInit {
         const balotaElement = document.getElementById(`b${balota.numero}`);
         if (balotaElement) {
           balotaElement.classList.remove('animate__swing');
+          balotaElement.classList.add('animate__pulse');
           this.blockButton = false;
           balotaElement.style.backgroundColor = 'white';
+          this.soundBalls.pause();
         }
       });
     }, 3000);
@@ -122,6 +138,8 @@ export class TableroComponent implements OnInit {
         balotaElement.style.color = 'white';
         balotaElement.style.fontSize = '20px';
         balotaElement.style.fontWeight = 'bold';
+        balotaElement.classList.remove('animate__swing');
+        balotaElement.classList.remove('animate__pulse');
       }
     } else if (this.gameMode.id == 2) {
       this.balotas.forEach((balota) => {
@@ -134,8 +152,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -159,8 +177,8 @@ export class TableroComponent implements OnInit {
           if (balota.letra == 'I' || balota.letra == 'G') {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -189,8 +207,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -223,8 +241,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -257,8 +275,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -291,8 +309,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -325,8 +343,8 @@ export class TableroComponent implements OnInit {
           ) {
             balotaElement.style.backgroundColor = 'red';
             balotaElement.style.color = 'red';
-            balotaElement.classList.remove('animate__pulse');
             balotaElement.classList.remove('animate__swing');
+            balotaElement.classList.add('animate__pulse');
           }
         }
       });
@@ -351,6 +369,10 @@ export class TableroComponent implements OnInit {
   }
 
   bingo() {
+    //bajar el volumen del audio de las suspenso
+    this.soundSuspense.volume = 0.6;
+    this.soundSuspense.loop = true;
+    this.soundSuspense.play();
     this.blockButton = true;
     this.hidenBingo = true;
     let bingo = document.getElementById('bingo');
@@ -360,6 +382,9 @@ export class TableroComponent implements OnInit {
   }
 
   confirmBingo() {
+    this.soundSuspense.pause();
+    this.soundTransition.play();
+    this.soundBingo.play();
     let divEncima = document.getElementById('divEncima');
     divEncima?.classList.add('absolute', 'z-50');
     console.log(divEncima);
@@ -373,24 +398,34 @@ export class TableroComponent implements OnInit {
     if (canvas) {
       confetti.create(canvas, {
         useWorker: true,
-      })({ particleCount: 200, spread: 200 });
+      })({ particleCount: 500, spread: 100 });
     }
+
+    //hacer in
   }
 
   noBingo() {
-    this.blockButton = false;
-    //eliminar el div divEncima
-    let divEncima = document.getElementById('divEncima');
-    divEncima?.classList.remove('absolute', 'z-50');
-    if (divEncima) {
-      divEncima.innerHTML = '';
-    }
-    this.hidenBingo = false;
-    let bingo = document.getElementById('bingo');
-    if (bingo) {
-      bingo.classList.add('animate__pulse');
-    }
-    this.spin();
+    this.soundSuspense.pause();
+    //que el soundFail se reproduzca desde el segundo 3
+    this.soundFail.currentTime = 1.2;
+
+    this.soundFail.play();
+
+    this.soundFail.onended = () => {
+      this.blockButton = false;
+      //eliminar el div divEncima
+      let divEncima = document.getElementById('divEncima');
+      divEncima?.classList.remove('absolute', 'z-50');
+      if (divEncima) {
+        divEncima.innerHTML = '';
+      }
+      this.hidenBingo = false;
+      let bingo = document.getElementById('bingo');
+      if (bingo) {
+        bingo.classList.add('animate__pulse');
+      }
+      this.spin();
+    };
   }
   ngOnInit(): void {
     this.printBalotas();
