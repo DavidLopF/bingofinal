@@ -1,22 +1,33 @@
-<div class="parallax-container ">
-    <div class="parallax-layer parallax-bg"></div>
-    <div class="parallax-layer parallax-overlay"></div> <!-- Capa de superposición transparente -->
-    <div class="parallax-layer">
-        <div class="row">
-            <div class="col">
-                <div class="example-button-container">
-                    <button mat-fab color="warn" class="home-button" aria-label="Example icon button with a home icon" (click)="redirectHome()">
-                        <mat-icon>home</mat-icon>
-                    </button>
-                </div>
-            </div>
+<div class="parallax-container">
+  <div class="parallax-layer parallax-bg"></div>
+  <div class="parallax-layer parallax-overlay"></div>
+  <!-- Capa de superposición transparente -->
+  <div class="parallax-layer">
+    <div class="flex">
+      <div class="w-15 ml-2 mt-5">
+        <!-- Contenido de la columna más pequeña -->
+        <div class="example-button-container">
+          <button
+            mat-fab
+            color="warn"
+            class="home-button"
+            aria-label="Example icon button with a home icon"
+            (click)="redirectHome()"
+          >
+            <mat-icon>home</mat-icon>
+          </button>
         </div>
-
-        <!-- Contenido adicional aquí -->
+      </div>
+      <div class="w-full mr-4 mt-3">
+        <!-- Contenido de la columna más grande -->
         <div class="container">
-            <div class="content">
-                <app-tablero [gameMode]="selectedValue"></app-tablero>
-            </div>
+          <div class="content">
+            <app-tablero [gameMode]="selectedValue"></app-tablero>
+          </div>
         </div>
+      </div>
     </div>
+
+    <!-- Contenido adicional aquí -->
+  </div>
 </div>

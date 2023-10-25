@@ -1,44 +1,57 @@
-<div class="parallax-container ">
-    <div class="parallax-layer parallax-bg"></div>
-    <div class="parallax-layer parallax-overlay"></div> <!-- Capa de superposición transparente -->
-    <div class="parallax-layer">
-        <div class="container ">
-            <div class="content">
-                <mat-card class="card animate__animated animate__backInUp z-depth-5">
-                    <mat-card-title-group>
-                        <div class="row center-align">
-                            <div class="row" style="margin: 30px;">
-                                <img mat-card-md-image class="circle responsive-img typeGame logo" #logo [hidden]="!imageSelected"
-                                    src={{imageSelected}}>
-                            </div>
-                            <mat-card-title>
-                                <h1 style="color: white;">Bienvenido Al Bingo</h1>
-                            </mat-card-title>
-                            <mat-card-subtitle>
-                                <h2 style="color: white;">Internacionale FC</h2>
-                            </mat-card-subtitle>
-                            <mat-divider style="color: white;"></mat-divider>
-                        </div>
-                    </mat-card-title-group>
-                    <mat-card-content>
-                        <div class="row center-align">
-                            <form>
-                                <mat-form-field class="select-mode" style="width: 70%;">
-                                    <mat-label>Selecciona un modo de juego</mat-label>
-                                    <mat-select (selectionChange)="changeOption($event.value)">
-                                        <mat-option *ngFor="let gameMode of gameModes" [value]="gameMode.id">
-                                            {{gameMode.name}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </form>
-                            <button mat-raised-button style="background-color: white; color: black;"
-                                (click)="selectMode()">Seleccionar</button>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
+<div class="parallax-container">
+  <div class="parallax-layer parallax-bg"></div>
+  <div class="parallax-layer parallax-overlay"></div>
+  <!-- Capa de superposición transparente -->
+  <div class="parallax-layer">
+    <div class="flex justify-center items-center h-screen">
+      <mat-card
+        class="card animate__animated animate__backInUp z-depth-5 w-10/12"
+      >
+        <mat-card-title-group>
+          <div class="row center-align">
+            <div class="row" style="margin: 30px">
+              <img
+                mat-card-md-image
+                class="circle responsive-img typeGame logo"
+                #logo
+                [hidden]="!imageSelected"
+                src="{{ imageSelected }}"
+              />
             </div>
-        </div>
-
+            <mat-card-title>
+              <h1 style="color: white">Bienvenido Al Bingo</h1>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <h2 style="color: white">Internacionale FC</h2>
+            </mat-card-subtitle>
+            <mat-divider style="color: white"></mat-divider>
+          </div>
+        </mat-card-title-group>
+        <mat-card-content>
+          <div class="row center-align">
+            <form>
+              <mat-form-field class="select-mode" style="width: 70%">
+                <mat-label>Selecciona un modo de juego</mat-label>
+                <mat-select (selectionChange)="changeOption($event.value)">
+                  <mat-option
+                    *ngFor="let gameMode of gameModes"
+                    [value]="gameMode.id"
+                  >
+                    {{ gameMode.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+            <button
+              mat-raised-button
+              style="background-color: white; color: black"
+              (click)="selectMode()"
+            >
+              Seleccionar
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
+  </div>
 </div>

@@ -1,47 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: black;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: black;
 }
 
 .parallax-container {
-    perspective: 1px;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    margin: 0;
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
 }
 
 .parallax-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .parallax-bg {
-    background-image: url('https://i.ibb.co/64fw6vC/Imagen-de-Whats-App-2023-08-24-a-las-00-04-04.jpg');
-    /* Ruta a la imagen */
-    background-size: cover;
-    background-position: center;
-    transform: translateZ(-1px) scale(2);
+  background-image: url("https://i.ibb.co/64fw6vC/Imagen-de-Whats-App-2023-08-24-a-las-00-04-04.jpg");
+  /* Ruta a la imagen */
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-1px) scale(2);
 }
 
 .parallax-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Ajusta el valor de opacidad (0.5 en este caso) */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Ajusta el valor de opacidad (0.5 en este caso) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-
