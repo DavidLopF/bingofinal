@@ -3,7 +3,6 @@
   <div class="parallax-layer parallax-overlay"></div>
   <!-- Capa de superposición transparente -->
   <div class="parallax-layer">
-    <div id="divEncima"></div>
     <div class="flex justify-center items-center h-screen">
       <mat-card
         class="card animate__animated animate__backInUp z-depth-5 w-10/12"
@@ -13,7 +12,7 @@
             <div class="row" style="margin: 30px">
               <img
                 mat-card-md-image
-                class="circle responsive-img typeGame logo"
+                class="circle responsive-img logo"
                 #logo
                 [hidden]="!imageSelected"
                 src="{{ imageSelected }}"
