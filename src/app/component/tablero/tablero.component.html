@@ -47,7 +47,7 @@
                <div class="row" [hidden]="!hidenBingo">
                   <h1>Validando Balotas</h1>
                   <div class="row">
-                     <div class="col">
+                     <div class="col" [hidden]="!hiddenAgain">
                         <button
                            mat-raised-button
                            class="spin ml-2"
@@ -56,13 +56,22 @@
                            Confirmar Bingo <mat-icon>celebration</mat-icon>
                         </button>
                      </div>
-                     <div class="col">
+                     <div class="col" [hidden]="!hiddenAgain">
                         <button
                            mat-raised-button
                            class="spin mr-2"
                            style="background-color: green; color: white"
                            (click)="noBingo()">
                            Sigue Jugando<mat-icon>sentiment_very_dissatisfied</mat-icon>
+                        </button>
+                     </div>
+                     <div class="col" [hidden]="hiddenAgain">
+                        <button
+                           mat-raised-button
+                           class="spin mr-2"
+                           style="background-color: green; color: white"
+                           (click)="noBingo()">
+                           <mat-icon>cached</mat-icon> vuelve a girar
                         </button>
                      </div>
                   </div>

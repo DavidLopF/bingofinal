@@ -35,6 +35,7 @@ export class TableroComponent implements OnInit {
   soundTransition: any;
   hidenBalotaSelected: boolean;
   contBalotas: string;
+  hiddenAgain: boolean;
   contador: any;
   @Input() gameMode: any;
   imgMode: string;
@@ -60,6 +61,7 @@ export class TableroComponent implements OnInit {
     this.soundFail = new Audio('../../../assets/sounds/fail.mp3');
     this.contBalotas = "Tablero de balotas";
     this.balotaSalida = { numero: 0, letra: '' };
+    this.hiddenAgain = true;
   }
 
   printBalotas() {
@@ -396,8 +398,11 @@ export class TableroComponent implements OnInit {
   }
 
   bingo() {
-    //bajar el volumen del audio de las suspenso
-    this.soundSuspense.volume = 0.6;
+    //validar que ya se haya seleccionado una balota
+    if (this.balotas.length == 75) {
+      return;
+    }
+
     this.soundSuspense.loop = true;
     this.soundSuspense.play();
     this.blockButton = true;
@@ -432,13 +437,14 @@ export class TableroComponent implements OnInit {
   }
 
   noBingo() {
-    this.soundSuspense.pause();
-    //que el soundFail se reproduzca desde el segundo 3
-    this.soundFail.currentTime = 1.2;
 
-    this.soundFail.play();
-
-    this.soundFail.onended = () => {
+    if (this.hiddenAgain == true) {
+      this.hiddenAgain = false;
+      this.soundSuspense.pause();
+      this.soundFail.play();
+      this.soundFail.currentTime = 1.2;
+    } else {
+      this.hiddenAgain = true;
       this.blockButton = false;
       //eliminar el div divEncima
       let divEncima = document.getElementById('divEncima');
@@ -452,7 +458,8 @@ export class TableroComponent implements OnInit {
         bingo.classList.add('animate__pulse');
       }
       this.spin();
-    };
+    }
+
   }
   ngOnInit(): void {
     this.printBalotas();
