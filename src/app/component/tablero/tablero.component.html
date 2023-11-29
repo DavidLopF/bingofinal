@@ -1,126 +1,136 @@
 <div class="relative" id="divPadre">
-  <div id="divEncima"></div>
-  <!-- Otros divs aquí -->
-  <div
-    class="row animate__animated animate__backInDown w-10/12 h-64 resize rounded-md"
-  >
-    <div class="col s11 offset-s11"></div>
-    <mat-card class="table example-card">
-      <div class="center-align">
-        <mat-card-title [hidden]="hidenBingo"
-          >Tablero de balotas</mat-card-title
-        >
-        <mat-card-subtitle [hidden]="hidenBingo" style="color: green"
-          >Tipo de tablero {{ gameMode.name }}</mat-card-subtitle
-        >
-        <div
-          class="flex justify-center place-items-center mt-3 mb-3 animate__animated animate__pulse animate__infinite"
-          id="bingo"
-        >
-          <!-- animate__animated animate__pulse animate__infinite -->
-          <img
-            mat-card-md-image
-            class="responsive-img typeGame logo place-items-center"
-            src="{{ imgMode }}"
-            [hidden]="hidenBingo"
-            (click)="bingo()"
-          />
+   <div id="divEncima"></div>
+   <!-- Otros divs aquí -->
+   <div
+      class="row animate__animated animate__backInDown w-10/12 h-64 resize rounded-md ">
+      <div class="col s11 offset-s11"></div>
+      <mat-card class="table example-card">
+         <div class="center-align mt-5">
+            <mat-card-title [hidden]="hidenBingo">
+               <div class="flex justify-center">
+                  <div class="w-1/4 ">
+                     <h1 style="background-color: yellow;"
+                        class="text-center rounded">{{contBalotas}}</h1>
+                  </div>
+               </div>
+            </mat-card-title>
 
-          <div class="row" [hidden]="!hidenBingo">
-            <h1>Validando Balotas</h1>
-            <div class="row">
-              <div class="col">
-                <button
-                  mat-raised-button
-                  class="spin ml-2"
-                  style="background-color: green; color: white"
-                  (click)="confirmBingo()"
-                >
-                  Confirmar Bingo <mat-icon>celebration</mat-icon>
-                </button>
-              </div>
-              <div class="col">
-                <button
-                  mat-raised-button
-                  class="spin mr-2"
-                  style="background-color: green; color: white"
-                  (click)="noBingo()"
-                >
-                  Sigue Jugando<mat-icon>sentiment_very_dissatisfied</mat-icon>
-                </button>
-              </div>
+            <mat-card-subtitle [hidden]="hidenBingo" style="color: green">Tipo
+               de
+               tablero {{ gameMode.name }}</mat-card-subtitle>
+            <div
+               class="flex justify-center place-items-center mt-3 mb-3 animate__animated animate__pulse animate__infinite"
+               id="bingo">
+               <!-- animate__animated animate__pulse animate__infinite -->
+
+               <div
+                  style="border-radius:300px;background: url('../../../assets/images/balon.png') no-repeat center center / cover; height: 250px;width: 250px; font-size: 30px; font-weight: bold;"
+                  class="balota center-align animate__animated animate__infinite mr-3"
+                  [hidden]="hidenBalotaSelected">
+                  <h1
+                     style="color: black; margin-top: 30%; margin-left: 11%; font-weight: bold; font-size: 30px;"><span>{{
+                        balotaSalida.letra
+                        }}
+                     </span></h1>
+                  <h1
+                     style="color: white; margin-top: 23%; margin-right: 33%; font-weight: bold; font-size: 25px;">{{balotaSalida.numero}}</h1>
+               </div>
+
+               <img
+                  mat-card-md-image
+                  class="responsive-img typeGame logo place-items-center"
+                  src="{{ imgMode }}"
+                  [hidden]="hidenBingo"
+                  (click)="bingo()"
+                  style="width: 200px; height: 250px;" />
+
+               <div class="row" [hidden]="!hidenBingo">
+                  <h1>Validando Balotas</h1>
+                  <div class="row">
+                     <div class="col">
+                        <button
+                           mat-raised-button
+                           class="spin ml-2"
+                           style="background-color: green; color: white"
+                           (click)="confirmBingo()">
+                           Confirmar Bingo <mat-icon>celebration</mat-icon>
+                        </button>
+                     </div>
+                     <div class="col">
+                        <button
+                           mat-raised-button
+                           class="spin mr-2"
+                           style="background-color: green; color: white"
+                           (click)="noBingo()">
+                           Sigue Jugando<mat-icon>sentiment_very_dissatisfied</mat-icon>
+                        </button>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="content">
-            <hr />
-          </div>
-        </div>
-      </div>
-      <div
-        class="row"
-        style="
+            <div class="container">
+               <div class="content">
+                  <hr />
+               </div>
+            </div>
+         </div>
+         <div
+            class="row"
+            style="
           margin-top: 20px;
           background-color: rgba(55, 225, 46, 0.552);
           border-radius: 10px;
           margin-bottom: 20px;
           width: 95%;
-        "
-      >
-        <div
-          class="col s1 center-align"
-          style="
+        ">
+            <div
+               class="col s1 center-align"
+               style="
             background-color: rgba(55, 225, 46, 0.0001);
             border-radius: 10px;
             margin-top: 15px;
-          "
-        >
-          <div
-            class="row"
-            style="margin-top: 18px"
-            *ngFor="let letter of letters"
-          >
-            <h1 style="color: white">{{ letter }}</h1>
-          </div>
-        </div>
-        <div class="col s11" style="margin-top: 10px">
-          <table class="center-align">
-            <tbody>
-              <tr
-                id=""
-                class="center-align"
-                style="border: none; margin-top: 10px"
-              ></tr>
-              <tr
-                id="b"
-                class="center-align"
-                style="border: none; margin-top: 10px"
-              ></tr>
-              <tr id="i" style="border: none; margin-top: 10px"></tr>
-              <tr id="n" style="border: none; margin-top: 10px"></tr>
-              <tr id="g" style="border: none; margin-top: 10px"></tr>
-              <tr id="o" style="border: none; margin-top: 10px"></tr>
-            </tbody>
-          </table>
-        </div>
-        <mat-divider></mat-divider>
-      </div>
+          ">
+               <div
+                  class="row"
+                  style="margin-top: 18px"
+                  *ngFor="let letter of letters">
+                  <h1 style="color: white">{{ letter }}</h1>
+               </div>
+            </div>
+            <div class="col s11" style="margin-top: 10px">
+               <table class="center-align">
+                  <tbody>
+                     <tr
+                        id
+                        class="center-align"
+                        style="border: none; margin-top: 10px"></tr>
+                     <tr
+                        id="b"
+                        class="center-align"
+                        style="border: none; margin-top: 10px"></tr>
+                     <tr id="i" style="border: none; margin-top: 10px"></tr>
+                     <tr id="n" style="border: none; margin-top: 10px"></tr>
+                     <tr id="g" style="border: none; margin-top: 10px"></tr>
+                     <tr id="o" style="border: none; margin-top: 10px"></tr>
+                  </tbody>
+               </table>
+            </div>
+            <mat-divider></mat-divider>
+         </div>
 
-      <div class="row center-align">
-        <mat-divider></mat-divider>
-        <button
-          [hidden]="hidenBingo"
-          mat-raised-button
-          class="spin animate__animated animate__pulse animate__infinite"
-          style="background-color: green; color: white"
-          (click)="spin()"
-          [disabled]="blockButton"
-          id="spin"
-        >
-          <mat-icon>cached</mat-icon> Gira la ruleta
-        </button>
-      </div>
-    </mat-card>
-  </div>
+         <div class="row center-align">
+            <mat-divider></mat-divider>
+            <button
+               [hidden]="hidenBingo"
+               mat-raised-button
+               class="spin animate__animated animate__pulse animate__infinite"
+               style="background-color: green; color: white"
+               (click)="spin()"
+               [disabled]="blockButton"
+               id="spin">
+               <mat-icon>cached</mat-icon> Gira la ruleta
+            </button>
+         </div>
+      </mat-card>
+   </div>
 </div>

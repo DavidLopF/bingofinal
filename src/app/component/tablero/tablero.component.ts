@@ -12,6 +12,11 @@ interface GameMode {
   id: number;
 }
 
+interface balota {
+  numero: number;
+  letra: string;
+}
+
 @Component({
   selector: 'app-tablero',
   templateUrl: './tablero.component.html',
@@ -28,8 +33,13 @@ export class TableroComponent implements OnInit {
   soundBingo: any;
   soundFail: any;
   soundTransition: any;
+  hidenBalotaSelected: boolean;
+  contBalotas: string;
+  contador: any;
   @Input() gameMode: any;
   imgMode: string;
+  balotaSalida: balota;
+
 
   constructor() {
     for (let i = 1; i <= 75; i++) {
@@ -42,11 +52,14 @@ export class TableroComponent implements OnInit {
     this.imgMode =
       localStorage.getItem('img') || 'https://i.ibb.co/7S85XhZ/inter-Logo.jpg';
     this.hidenBingo = false;
+    this.hidenBalotaSelected = true;
     this.soundBalls = new Audio('../../../assets/sounds/spin.mp3');
     this.soundSuspense = new Audio('../../../assets/sounds/suspense.mp3');
     this.soundBingo = new Audio('../../../assets/sounds/bingo.mp3');
     this.soundTransition = new Audio('../../../assets/sounds/transition.mp3');
     this.soundFail = new Audio('../../../assets/sounds/fail.mp3');
+    this.contBalotas = "Tablero de balotas";
+    this.balotaSalida = { numero: 0, letra: '' };
   }
 
   printBalotas() {
@@ -78,6 +91,16 @@ export class TableroComponent implements OnInit {
     });
   }
 
+
+  conteoBalotas() {
+    //hacer restando el numero de balotas totales con las que estan en el array balotas
+
+    let balotasTotales = 75;
+    let balotasRestantes = balotasTotales - this.balotas.length;
+    console.log(balotasRestantes);
+    this.contBalotas = "Han salido " + balotasRestantes.toString() + " balotas de 75";
+  }
+
   getLetter(number: number): string {
     if (number >= 1 && number <= 15) {
       return 'B';
@@ -103,7 +126,6 @@ export class TableroComponent implements OnInit {
     // this.soundBalls.play(); comezar este audio desde el inicio
     this.soundBalls.currentTime = 0;
     this.soundBalls.play();
-
     this.balotas.forEach((balota) => {
       const balotaElement = document.getElementById(`b${balota.numero}`);
       if (balotaElement) {
@@ -140,6 +162,7 @@ export class TableroComponent implements OnInit {
         balotaElement.style.fontWeight = 'bold';
         balotaElement.classList.remove('animate__swing');
         balotaElement.classList.remove('animate__pulse');
+        this.balotaSalida = { numero: balota.numero, letra: balota.letra };
       }
     } else if (this.gameMode.id == 2) {
       this.balotas.forEach((balota) => {
@@ -366,6 +389,10 @@ export class TableroComponent implements OnInit {
         balotaElement8.style.fontWeight = 'bold';
       }
     }
+    this.hidenBalotaSelected = false;
+    this.conteoBalotas();
+
+
   }
 
   bingo() {
