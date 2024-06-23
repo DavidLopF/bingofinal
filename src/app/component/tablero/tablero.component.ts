@@ -96,7 +96,6 @@ export class TableroComponent implements OnInit {
 
   conteoBalotas() {
     //hacer restando el numero de balotas totales con las que estan en el array balotas
-
     let balotasTotales = 75;
     let balotasRestantes = balotasTotales - this.balotas.length;
     console.log(balotasRestantes);
@@ -124,7 +123,6 @@ export class TableroComponent implements OnInit {
 
   spin() {
     this.blockButton = true;
-
     // this.soundBalls.play(); comezar este audio desde el inicio
     this.soundBalls.currentTime = 0;
     this.soundBalls.play();
@@ -152,6 +150,7 @@ export class TableroComponent implements OnInit {
   }
 
   selectBalota() {
+    console.log("el id del modo de juego es", this.gameMode.id);
     if (this.gameMode.id == 1) {
       const balota =
         this.balotas[Math.floor(Math.random() * this.balotas.length)];
@@ -182,6 +181,7 @@ export class TableroComponent implements OnInit {
           }
         }
       });
+      
       this.balotas = this.balotas.filter(
         (b) => b.letra !== 'I' && b.letra !== 'N' && b.letra !== 'G'
       );
@@ -194,6 +194,7 @@ export class TableroComponent implements OnInit {
         balotaElement2.style.color = 'white';
         balotaElement2.style.fontSize = '20px';
         balotaElement2.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota2.numero, letra: balota2.letra };
       }
     } else if (this.gameMode.id == 3) {
       this.balotas.forEach((balota) => {
@@ -219,6 +220,7 @@ export class TableroComponent implements OnInit {
         balotaElement3.style.color = 'white';
         balotaElement3.style.fontSize = '20px';
         balotaElement3.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota3.numero, letra: balota3.letra };
       }
     } else if (this.gameMode.id == 4) {
       this.balotas.forEach((balota) => {
@@ -253,6 +255,7 @@ export class TableroComponent implements OnInit {
         balotaElement4.style.color = 'white';
         balotaElement4.style.fontSize = '20px';
         balotaElement4.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota4.numero, letra: balota4.letra };
       }
     } else if (this.gameMode.id == 5) {
       this.balotas.forEach((balota) => {
@@ -287,6 +290,7 @@ export class TableroComponent implements OnInit {
         balotaElement5.style.color = 'white';
         balotaElement5.style.fontSize = '20px';
         balotaElement5.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota5.numero, letra: balota5.letra };
       }
     } else if (this.gameMode.id == 6) {
       this.balotas.forEach((balota) => {
@@ -321,6 +325,7 @@ export class TableroComponent implements OnInit {
         balotaElement6.style.color = 'white';
         balotaElement6.style.fontSize = '20px';
         balotaElement6.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota6.numero, letra: balota6.letra };
       }
     } else if (this.gameMode.id == 7) {
       this.balotas.forEach((balota) => {
@@ -355,6 +360,7 @@ export class TableroComponent implements OnInit {
         balotaElement7.style.color = 'white';
         balotaElement7.style.fontSize = '20px';
         balotaElement7.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota7.numero, letra: balota7.letra };
       }
     } else if (this.gameMode.id == 8) {
       this.balotas.forEach((balota) => {
@@ -389,12 +395,12 @@ export class TableroComponent implements OnInit {
         balotaElement8.style.color = 'white';
         balotaElement8.style.fontSize = '20px';
         balotaElement8.style.fontWeight = 'bold';
+        this.balotaSalida = { numero: balota8.numero, letra: balota8.letra };
+
       }
     }
     this.hidenBalotaSelected = false;
     this.conteoBalotas();
-
-
   }
 
   bingo() {
