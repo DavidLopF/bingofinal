@@ -404,11 +404,9 @@ export class TableroComponent implements OnInit {
   }
 
   bingo() {
-    //validar que ya se haya seleccionado una balota
     if (this.balotas.length == 75) {
       return;
     }
-
     this.soundSuspense.loop = true;
     this.soundSuspense.play();
     this.blockButton = true;
